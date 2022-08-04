@@ -1,7 +1,13 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import connectDb from './config/db.js'
 import products from './data/products.js'
+
 dotenv.config()
+// Just remember that you can't use like this connectDb()
+// it will throw a error: mongoose not a function.. :()
+
+connectDb
 
 const app = express()
 
