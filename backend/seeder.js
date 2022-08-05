@@ -12,6 +12,10 @@ import connectDB from './config/db.js'
 dotenv.config()
 connectDB()
 
+
+
+// note this is the good way to get initial data
+// #I need to find an answer to this idea. 
 const importData = async () => {
 	try {
 		await Order.deleteMany()
