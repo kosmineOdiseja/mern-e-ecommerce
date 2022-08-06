@@ -1,4 +1,5 @@
 import express from 'express'
+import colors from 'colors'
 import asyncHandler from 'express-async-handler'
 
 const router = express.Router()
@@ -17,13 +18,14 @@ router.get('/', asyncHandler(async (req, res) => {
 // @access Public
 router.get('/:id', asyncHandler(async (req, res) => {
 	const product = await Product.findById(req.params.id)
-	// products.find(p => p._id === req.params.id)
-	if (product) {
-		res.json(product)
-	} else {
-		res.status(404).json({ message: "product not found" })
+
+	if (!product) {
+		res.status(404)
+		throw new Error({ message: 'this product not found' })
 	}
 
-	res.json(product)
+	res.status(200).json(product)
+
+
 }))
 export default router
