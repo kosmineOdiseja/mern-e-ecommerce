@@ -18,11 +18,13 @@ router.get('/', asyncHandler(async (req, res) => {
 // @access Public
 router.get('/:id', asyncHandler(async (req, res) => {
 	const product = await Product.findById(req.params.id)
-	console.log(product, '  this is the product ')
 
-	if (!product) {
-		res.status(404)
-		throw new Error({ message: 'this product not found' })
+	if (product) {
+		res.json(product)
+	} else {
+
+		res.status(404).json({ message: 'this product not found.' })
+		// throw new Error('this product not found')
 	}
 	res.status(200).json(product)
 }))
