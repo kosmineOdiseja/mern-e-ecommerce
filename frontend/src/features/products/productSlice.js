@@ -1,6 +1,6 @@
 // 1 step: 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import productService from './productsService'
+import productsService from './productsService'
 
 // import ticketService from "./ticketService"
 // 2 step: 
@@ -14,15 +14,14 @@ const initialState = {
 }
 
 // step 4: 
-// Get user tickets   
+// Get products  
 // after async we put _ because we don't put anything but still want to thunkAPI do his job 
-// and we still need that token where we can use thunkAPI.getState().auth.user.token
 export const getProducts = createAsyncThunk('products/getAll', async (_, thunkAPI) => {
 	try {
 		// this line is going to the authService.js file and do his his job
 		// const data = productService.getProducts()
 		// return await data
-		return await productService.getProducts()
+		return await productsService.getProducts()
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) ||
 			error.message || error.toString()
@@ -30,14 +29,24 @@ export const getProducts = createAsyncThunk('products/getAll', async (_, thunkAP
 	}
 })
 
-//test 
-// test2 
-// test 3
+// get a product 
+export const getProduct = createAsyncThunk('product/get', async (productId, thunkAPI) => {
+	console.log(productId, 'this is productId from slice')
+	try {
+		return await productsService.getProduct(productId)
+	} catch (error) {
+		const message = (error.response && error.response.data && error.response.data.message) ||
+			error.message || error.toString()
+		return thunkAPI.rejectWithValue(message)
+	}
+})
+
 // step 3:  
 export const productsSlice = createSlice({
 	name: 'products',
 	initialState,
 	reducers: {
+		reset: (state) => initialState
 	},
 	extraReducers: (builder) => {
 
@@ -56,8 +65,21 @@ export const productsSlice = createSlice({
 				state.isError = true
 				state.message = action.payload
 			})
+			.addCase(getProduct.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(getProduct.fulfilled, (state, action) => {
+				state.isLoading = false
+				state.isSuccess = true
+				state.product = action.payload
+			})
+			.addCase(getProduct.rejected, (state, action) => {
+				state.isLoading = false
+				state.isError = true
+				state.message = action.payload
+			})
 	}
 })
 
-// export const { reset } = productSlice.actions
+export const { reset } = productsSlice.actions
 export default productsSlice.reducer

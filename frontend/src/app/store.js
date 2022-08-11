@@ -5,10 +5,7 @@ import productReducer from '../features/products/productSlice'
 
 export const store = configureStore({
 	reducer: {
-		//     auth: authReducer,
-		//     tickets: ticketReducer,
-		//     notes: noteReducer,
+
 		products: productReducer,
-		// labas: "labas",
 	},
 });

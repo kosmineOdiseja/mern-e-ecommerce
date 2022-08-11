@@ -1,25 +1,32 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
-import { useParams } from "react-router-dom";
 import Rating from '../components/Rating';
-import axios from 'axios';
+import { getProduct, reset } from '../features/products/productSlice'
 
 function ProductScreen() {
-	const params = useParams()
 
-	const [product, setProduct] = useState({
-	})
+	const { product, isLoading, isSuccess, isError, message } = useSelector(
+		(state) => state.products
+	);
+	console.log(product, 'this is a product')
+	const params = useParams()
+	console.log(params, 'this is param')
+	const { productId } = useParams();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-		const fetchProduct = async () => {
+		dispatch(getProduct(productId))
 
-			const { data } = await axios.get(`/api/products/${params.id}`)
-			setProduct(data)
-		}
-		fetchProduct()
-	}, [])
+	}, [productId])
 
+	if (isLoading) {
+		return <h1> Loading </h1>
+	}
+	if (isError) {
+		return <h1>{message}</h1>
+	}
 
 	return (
 		<>
