@@ -1,6 +1,6 @@
 // 1 step: 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import productService from './productService'
+import productService from './productsService'
 
 // import ticketService from "./ticketService"
 // 2 step: 
