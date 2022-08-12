@@ -10,16 +10,18 @@ function ProductScreen() {
 	const { product, isLoading, isSuccess, isError, message } = useSelector(
 		(state) => state.products
 	);
-	console.log(product, 'this is a product')
 	const params = useParams()
-	console.log(params, 'this is param')
-	const { productId } = useParams();
+	// console.log(params, 'this is param')
+	console.log(params, 'this params product screen')
+	// const { productId } = useParams();
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(getProduct(productId))
+	// console.log(productId, 'this is a productID from product screen')
 
-	}, [productId])
+	useEffect(() => {
+		dispatch(getProduct(params))
+
+	}, [params])
 
 	if (isLoading) {
 		return <h1> Loading </h1>
