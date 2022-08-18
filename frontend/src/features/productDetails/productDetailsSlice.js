@@ -13,7 +13,7 @@ const initialState = {
 	// reviews: '',
 }
 // step 4: 
-export const getProductDetails = createAsyncThunk('product/get', async (productId, thunkAPI) => {
+export const getProductDetails = createAsyncThunk('productDetails/get', async (productId, thunkAPI) => {
 	try {
 		return await productDetailsService.getProductDetails(productId)
 	} catch (error) {

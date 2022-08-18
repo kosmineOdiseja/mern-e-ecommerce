@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating';
 // import { getProduct, reset } from '../features/products/productSlice'
-import { getProduct, reset } from '../features/productsDetails/productDetailsSlice'
+import { getProductDetails, reset } from '../features/productDetails/productDetailsSlice'
 
 
 function ProductScreen({ history }) {
 	const [qty, setQty] = useState(0)
 
-	const { product, isLoading, isSuccess, isError, message } = useSelector(
+	const { productDetails, isLoading, isSuccess, isError, message } = useSelector(
 		(state) => state.productDetails
 	);
 	const params = useParams()
@@ -19,7 +19,7 @@ function ProductScreen({ history }) {
 
 	// console.log(productId, 'this is a productID from product screen')
 	useEffect(() => {
-		dispatch(getProduct(params))
+		dispatch(getProductDetails(params))
 	}, [params])
 
 	const addToCardHandler = () => {
@@ -50,21 +50,21 @@ function ProductScreen({ history }) {
 			</Link>
 			<Row>
 				<Col>
-					<Image src={product.image} alt={product.name} fluid />
+					<Image src={productDetails.image} alt={productDetails.name} fluid />
 				</Col>
 				<Col>
 					<ListGroup variant='flush'>
 						<ListGroup.Item>
-							<h2>{product.name}</h2>
+							<h2>{productDetails.name}</h2>
 						</ListGroup.Item>
 						<ListGroup.Item>
-							<Rating value={product.rating} text={`${product.numReviews} reviews`} />
+							<Rating value={productDetails.rating} text={`${productDetails.numReviews} reviews`} />
 						</ListGroup.Item>
 						<ListGroup.Item>
-							Price: ${product.price}
+							Price: ${productDetails.price}
 						</ListGroup.Item>
 						<ListGroup.Item>
-							Description: ${product.description}
+							Description: ${productDetails.description}
 						</ListGroup.Item>
 
 					</ListGroup>
@@ -75,7 +75,7 @@ function ProductScreen({ history }) {
 							<Row>
 								<Col>Price:</Col>
 								<Col>
-									<strong>${product.price}</strong>
+									<strong>${productDetails.price}</strong>
 								</Col>
 							</Row>
 						</ListGroup.Item>
@@ -85,17 +85,17 @@ function ProductScreen({ history }) {
 							<Row>
 								<Col>Status:</Col>
 								<Col>
-									{product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+									{productDetails.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
 								</Col>
 							</Row>
 						</ListGroup.Item>
-						{product.countInStock > 0 && (<ListGroup.Item>
+						{productDetails.countInStock > 0 && (<ListGroup.Item>
 							<Row>
 								<Col> Qty</Col>
 								<Col>
 									< Form.Control as='select' value={qty} onChange={(e) => setQty(e.target.value)}>
 										{
-											[...Array(product.countInStock).keys()].map(x => (
+											[...Array(productDetails.countInStock).keys()].map(x => (
 												<option key={x + 1} value={x + 1}>
 													{x + 1}
 												</option>
@@ -106,7 +106,7 @@ function ProductScreen({ history }) {
 							</Row>
 						</ListGroup.Item>)}
 						<ListGroup>
-							<Button onClick={addToCardHandler} className='btn-block' type='button' disabled={product.countInStock === 0}> Add To Card </Button>
+							<Button onClick={addToCardHandler} className='btn-block' type='button' disabled={productDetails.countInStock === 0}> Add To Card </Button>
 						</ListGroup>
 					</ListGroup>
 				</Col>

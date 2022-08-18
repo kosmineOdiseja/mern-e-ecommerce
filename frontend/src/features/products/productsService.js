@@ -16,17 +16,10 @@ const getProduct = async (productId) => {
 	return response.data
 }
 
-// Get ProductDetails
-// api/products/:id
-const getProductDetails = async (productId) => {
-	const response = await axios.get(API_URL + productId.id)
-	return response.data
-}
+
 
 const productService = {
 	getProducts,
-	getProduct,
-	getProductDetails,
 }
 
 export default productService
