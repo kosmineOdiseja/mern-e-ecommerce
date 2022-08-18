@@ -3,13 +3,15 @@ import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating';
-import { getProduct, reset } from '../features/products/productSlice'
+// import { getProduct, reset } from '../features/products/productSlice'
+import { getProduct, reset } from '../features/productsDetails/productDetailsSlice'
+
 
 function ProductScreen({ history }) {
 	const [qty, setQty] = useState(0)
 
 	const { product, isLoading, isSuccess, isError, message } = useSelector(
-		(state) => state.products
+		(state) => state.productDetails
 	);
 	const params = useParams()
 	const dispatch = useDispatch();

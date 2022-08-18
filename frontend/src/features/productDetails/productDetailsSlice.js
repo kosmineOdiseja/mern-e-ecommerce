@@ -1,6 +1,6 @@
 //  1 step: 
 import { createSlice, createAsyncThunk, createSerializableStateInvariantMiddleware } from '@reduxjs/toolkit'
-import productService from '../products/productsService'
+import productDetailsService from '../productDetails/productDetailsService'
 
 // 2 step:
 
@@ -15,13 +15,24 @@ const initialState = {
 // step 4: 
 export const getProductDetails = createAsyncThunk('product/get', async (productId, thunkAPI) => {
 	try {
-		return await productService.getProductDetails(productId)
+		return await productDetailsService.getProductDetails(productId)
 	} catch (error) {
 		const message = (error.response && error.response.data && error.response.data.message) ||
 			error.message || error.toString()
 		return thunkAPI.rejectWithValue(message)
 	}
 })
+// // get a product 
+// export const getProduct = createAsyncThunk('product/get', async (productId, thunkAPI) => {
+// 	console.log(productId, 'this is productId from slice')
+// 	try {
+// 		return await productsService.getProduct(productId)
+// 	} catch (error) {
+// 		const message = (error.response && error.response.data && error.response.data.message) ||
+// 			error.message || error.toString()
+// 		return thunkAPI.rejectWithValue(message)
+// 	}
+// })
 
 
 // step 3: 
@@ -48,3 +59,5 @@ export const productDetailsSlice = createSlice({
 			})
 	}
 })
+
+export default productDetailsSlice.reducer
