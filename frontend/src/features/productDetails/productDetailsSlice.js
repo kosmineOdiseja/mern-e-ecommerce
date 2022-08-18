@@ -1,5 +1,5 @@
 //  1 step: 
-import { createSlice, createAsyncThunk, createSerializableStateInvariantMiddleware } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import productDetailsService from '../productDetails/productDetailsService'
 
 // 2 step:
