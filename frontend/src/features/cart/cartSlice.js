@@ -29,6 +29,22 @@ export const cartSlice = createSlice({
 		reset: (state) => initialState
 	},
 	extraReducers: (builder) => {
+		builder
+			.addCase(getCart.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(getCart.fulfilled, (state, action) => {
+				state.isLoading = false
+				state.isSuccess = true
+				state.cartItems = action.payload
+				// i think here i need to check: do I have a Item if true update or add new item to the cart, 
+				// if not add that cart 
+			})
+			.addCase(getCart.rejected, (state, action) => {
+				state.isLoading = false
+				state.isSuccess = false
+				state.message = action.payload
+			})
 	}
 })
 

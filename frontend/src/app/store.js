@@ -10,6 +10,6 @@ export const store = configureStore({
 	reducer: {
 		products: productReducer,
 		productDetails: productDetailsReducer,
-		cartItems: cartReducer,
+		cart: cartReducer,
 	},
 });

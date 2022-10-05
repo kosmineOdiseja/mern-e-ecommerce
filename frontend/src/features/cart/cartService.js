@@ -13,6 +13,24 @@ const getCartProducts = async (productId, qty) => {
 }
 
 
+/**
+ *	I need fallow this tutorial, I need to do different redux here?  
+ */
+
+/**
+ * cmmb command for multiline comment 
+ */
+
+/**
+ * add to cart  
+ * cart remove
+ * when we add to cart we face this problems: 
+ * 	check to if there is an items
+ * 		if (true) => update existing items 
+ *  	else create() cart
+ * 
+ */
+
 const cartService = {
 	getCartProducts
 }
