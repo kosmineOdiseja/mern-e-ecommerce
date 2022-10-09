@@ -8,6 +8,7 @@ import { message } from '../components/Message'
 function CardScreen() {
 	return (
 		<div>
+			{/* for tomorrow: https://www.freecodecamp.org/news/redux-for-beginners-the-brain-friendly-guide-to-redux/  */}
 			CardScreen
 
 		</div>
