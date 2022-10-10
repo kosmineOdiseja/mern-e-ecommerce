@@ -6,6 +6,10 @@ import cartService from './cartService'
  * this repos looks promising: 
  * https://github.com/gulshancodes/redux-shopping-cart/blob/main/src/store/slices/cartSlice.js 
  */
+/**
+ * one more tutorial to watch / add to cart item 
+ * https://www.youtube.com/watch?v=zrs7u6bdbUw&ab_channel=freeCodeCamp.org 
+ */
 
 // step 2: 
 const initialState = {
