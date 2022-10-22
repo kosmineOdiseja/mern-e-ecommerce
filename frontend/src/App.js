@@ -8,21 +8,20 @@ import CartScreen from './screens/CartScreen'
 import Product from './components/Product'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-
 function App() {
 
   return (
     <Router>
       <Header />
       <main className='py-3'>
-
         <Container>
           <Routes>
             <Route path='/' element={<HomeScreen />} />
             <Route path='/product/:id' element={<ProductScreen />} />
             {/* <Route path="/product/:id" element={<Product />} /> */}
             {/* // <HomeScreen /> */}
-            <Route path='/cart/:id' element={<CartScreen />} />
+            {/* Question-mark means optional, because we don't need always send an id */}
+            <Route path='/cart/:id?' element={<CartScreen />} />
           </Routes>
         </Container>
       </main>

@@ -2,6 +2,7 @@ import axios from 'axios'
 
 // not sure if this is true API/URL
 const API_URL = "/api/products/"
+// console.log(product, '  this is the product ')
 
 // Get Cart List
 // api/products/:id
