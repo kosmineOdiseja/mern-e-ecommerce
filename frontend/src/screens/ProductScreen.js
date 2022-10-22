@@ -17,11 +17,12 @@ function ProductScreen({ history }) {
 
 	// console.log(productId, 'this is a productID from product screen')
 	useEffect(() => {
+		console.log(getProductDetails(params, 'this params getProducts'))
 		dispatch(getProductDetails(params))
 		console.log(params.id, 'this is params id')
 	}, [params])
 
-	const addToCardHandler = () => {
+	const addToCartHandler = () => {
 		// react router history object 
 		// history.push(`/cart/${params.id}?qty=${qty}`)
 
@@ -105,7 +106,7 @@ function ProductScreen({ history }) {
 								</Row>
 							</ListGroup.Item>)}
 						<ListGroup>
-							<Button onClick={addToCardHandler} className='btn-block' type='button' disabled={productDetails.countInStock === 0}> Add To Card </Button>
+							<Button onClick={addToCartHandler} className='btn-block' type='button' disabled={productDetails.countInStock === 0}> Add To Card </Button>
 						</ListGroup>
 					</ListGroup>
 				</Col>

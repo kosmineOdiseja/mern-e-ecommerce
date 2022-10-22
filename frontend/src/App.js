@@ -20,8 +20,12 @@ function App() {
             <Route path='/product/:id' element={<ProductScreen />} />
             {/* <Route path="/product/:id" element={<Product />} /> */}
             {/* // <HomeScreen /> */}
+
+            {/*this is workd around because it should work: /cart/:id? but not working */}
+            <Route path='/cart' element={<CartScreen />} />
             {/* Question-mark means optional, because we don't need always send an id */}
-            <Route path='/cart/:id?' element={<CartScreen />} />
+            <Route path='/cart/:id' element={<CartScreen />} />
+            {/* <Route path='/cart/:id?' element={<CartScreen />} /> */}
           </Routes>
         </Container>
       </main>
