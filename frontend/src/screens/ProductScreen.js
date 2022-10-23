@@ -17,9 +17,7 @@ function ProductScreen({ history }) {
 
 	// console.log(productId, 'this is a productID from product screen')
 	useEffect(() => {
-		console.log(getProductDetails(params, 'this params getProducts'))
 		dispatch(getProductDetails(params))
-		console.log(params.id, 'this is params id')
 	}, [params])
 
 	const addToCartHandler = () => {
