@@ -4,17 +4,21 @@ import { useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelect } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import { Message } from '../components/Message'
-import { getProductDetails, reset } from '../features/productDetails/productDetailsSlice'
+import addToCart from '../features/cart/cartService'
 
 function CartScreen({ match }) {
 
 	const params = useParams()
+	const productId = params.id
 	const dispatch = useDispatch()
 	const [searchParams] = useSearchParams();
-	const qty = searchParams.get('qty') // number string 
+	const qty = searchParams.get('qty'); // number string 
 
 	useEffect(() => {
-		dispatch(getProductDetails(params))
+		if (productId) {
+
+			dispatch(addToCart(productId, qty))
+		}
 	}, [params])
 
 	return (
