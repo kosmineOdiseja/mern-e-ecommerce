@@ -16,11 +16,7 @@ function CartScreen({ match }) {
 	// const productId = 1
 	// console.log(productId, 'this productId')
 	const [searchParams, setSearchParams] = useSearchParams();
-	console.log(searchParams, 'first searchParams')
 	const someQueryParam = searchParams.get('qty');
-	console.log(someQueryParam, 'someQueryParam, alius ')
-
-	console.log(params, 'cartSrcreen params')
 
 	useEffect(() => {
 		console.log(getProductDetails(params, 'this params getProducts'))
