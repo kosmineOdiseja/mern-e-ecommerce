@@ -2,20 +2,50 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import cartService from './cartService'
 
-export const cartSlice = createSlice({
-	name: "cart",
-	initialState: [],
-	reducers: {
-		CART_ADD_ITEM: (state) => {
-			// const item = action.payload
+// 2 step create initialState
 
-			console.log(state, 'this is state to add items')
+const initialState = {
+	cartItem: {},
+	isError: false,
+	isSuccess: false,
+	isLoading: false,
+	message: '',
+}
 
-		},
-		CART_REMOVE_ITEM: (state) => {
-			console.log(state, 'this is state to add items')
-		}
-	},
+// step 4 
+export const getCartItems = createAsyncThunk('cartItems/get', async (productId, thunkAPI) => {
+	try {
+		return await cartService.getCartItems(productId)
+	} catch (error) {
+		const message = (error.response && error.response.data && error.response.data.message) ||
+			error.message || error.toString()
+		return thunkAPI.rejectWithValue(message)
+	}
 })
 
-export default cartSlice.reducer
+// 3 step 
+export const cartItemSlice = createSlice({
+	name: "cartItems",
+	initialState,
+	reducers: {
+		reset: (state) => initialState
+	},
+	extraReducers: (builder) => {
+		builder
+			.addCase(getCartItems.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(getCartItems.fullfilled, (state, action) => {
+				state.isLoading = false
+				state.isSuccess = true
+				state.cartItems = action.payload
+			})
+			.addCase(getCartItems.rejected, (state, action) => {
+				state.isLoading = false
+				state.isSuccess = false
+				state.message = action.payload
+			})
+	}
+})
+
+export default cartItemSlice.reducer
