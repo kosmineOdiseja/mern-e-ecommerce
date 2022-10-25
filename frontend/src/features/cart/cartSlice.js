@@ -5,7 +5,7 @@ import cartService from './cartService'
 // 2 step create initialState
 
 const initialState = {
-	cartItem: {},
+	cartItems: {},
 	isError: false,
 	isSuccess: false,
 	isLoading: false,

@@ -7,7 +7,7 @@ const API_URL = "/api/products/"
 // Get Cart List
 // api/products/:id
 
-const addToCart = async (productId, qty) => {
+const getCartItems = async (productId, qty) => {
 	console.log(productId, 'this is productId')
 	console.log(qty, 'this is qty')
 	const response = await axios.get(API_URL + productId.id)
@@ -35,7 +35,7 @@ const addToCart = async (productId, qty) => {
  */
 
 const cartService = {
-	addToCart
+	getCartItems
 }
 
 console.log(JSON.stringify(localStorage.ticket), 'this is localStorage')
