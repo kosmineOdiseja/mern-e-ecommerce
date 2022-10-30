@@ -6,7 +6,8 @@ import Rating from '../components/Rating';
 // import { getProduct, reset } from '../features/products/productSlice'
 import { getProductDetails, reset } from '../features/productDetails/productDetailsSlice'
 
-function ProductScreen({ history }) {
+// function ProductScreen({ history }) {
+function ProductScreen() {
 	const [qty, setQty] = useState(1)
 	const { productDetails, isLoading, isSuccess, isError, message } = useSelector(
 		(state) => state.productDetails
@@ -24,9 +25,8 @@ function ProductScreen({ history }) {
 		// react router history object 
 		// history.push(`/cart/${params.id}?qty=${qty}`)
 
-		// this line below dons't work
 		// history.push(`/cart/${params.id}?qty=${qty}`)
-		navigate(`/cart/${params.id}?qty=${qty}`)
+		navigate(`/cart/${params.id}?qty=${qty}`) // navigates to that url link, where we can get the product
 	}
 
 	if (isLoading) {
