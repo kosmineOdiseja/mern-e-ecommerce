@@ -5,6 +5,7 @@ import { useDispatch, useSelect } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import { Message } from '../components/Message'
 import addToCart from '../features/cart/cartService'
+import { getCartItems } from '../features/cart/cartSlice'
 
 function CartScreen({ match }) {
 
@@ -16,8 +17,9 @@ function CartScreen({ match }) {
 
 	useEffect(() => {
 		if (productId) {
-
-			dispatch(addToCart(productId, qty))
+			// getCartItems
+			dispatch(getCartItems(productId, qty))
+			// dispatch(addToCart(productId, qty))
 		}
 	}, [params])
 

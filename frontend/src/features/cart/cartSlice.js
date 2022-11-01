@@ -28,31 +28,24 @@ export const cartItemSlice = createSlice({
 	name: "cartItems",
 	initialState,
 	reducers: {
-		// reset: (state) => initialState
-		addToCart: state => {
-			state.value = 
-		},
-		removeFromCart: => {
-
-
-		}
+		reset: (state) => initialState
 	},
-	// extraReducers: (builder) => {
-	// 	builder
-	// 		.addCase(getCartItems.pending, (state) => {
-	// 			state.isLoading = true
-	// 		})
-	// 		.addCase(getCartItems.fullfilled, (state, action) => {
-	// 			state.isLoading = false
-	// 			state.isSuccess = true
-	// 			state.cartItems = action.payload
-	// 		})
-	// 		.addCase(getCartItems.rejected, (state, action) => {
-	// 			state.isLoading = false
-	// 			state.isSuccess = false
-	// 			state.message = action.payload
-	// 		})
-	// }
+	extraReducers: (builder) => {
+		builder
+			.addCase(getCartItems.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(getCartItems.fulfilled, (state, action) => {
+				state.isLoading = false
+				state.isSuccess = true
+				state.cartItems = action.payload
+			})
+			.addCase(getCartItems.rejected, (state, action) => {
+				state.isLoading = false
+				state.isSuccess = false
+				state.message = action.payload
+			})
+	}
 })
 
 // export const { increment, decrement, incrementByAmount } = someNameSlice.actions

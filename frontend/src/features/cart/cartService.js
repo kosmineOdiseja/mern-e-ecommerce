@@ -7,11 +7,10 @@ const API_URL = "/api/products/"
 // Get Cart List
 // api/products/:id
 
-const getCartItems = async (productId, qty) => {
-	console.log(productId, 'this is productId')
-	console.log(qty, 'this is qty')
+const getCartItems = (productId, qty) => async (getState) => {
+
 	const response = await axios.get(API_URL + productId.id)
-	console.log(response.data, 'this is response.data')
+
 	return response.data
 }
 
@@ -33,12 +32,12 @@ const getCartItems = async (productId, qty) => {
  *  	else create() cart
  * 
  */
+// this line bellow doesn't work!
+// localStorage.setItem("cartItem", JSON.stringify(getCartItems)
 
 const cartService = {
 	getCartItems
 }
 
-console.log(JSON.stringify(localStorage.ticket), 'this is localStorage')
-// localStorage.setItem("cartItem", JSON.stringify(getState().cart.cartItems))
 
 export default cartService
